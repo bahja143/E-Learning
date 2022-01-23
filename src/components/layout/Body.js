@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 
 import Home from "../../views/Home/Home";
@@ -20,14 +20,13 @@ const Body = () => {
 
   return (
     <div className={classes.container}>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path='/coursedetail' element={<CourseDetail />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />}/>
-        </Routes> 
-      </BrowserRouter>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="/coursedetail" element={<CourseDetail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
     </div>
   );
 };

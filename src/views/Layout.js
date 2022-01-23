@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "@mui/material";
-
+import { Routes } from "react-router-dom";
 
 import TopHeader from "../components/layout/TopHeader";
 import Navigation from "../components/layout/Navigation";
@@ -12,15 +12,16 @@ import Footer from "../components/layout/Footer";
 
 import menuItems from "../menuItems";
 
-const Layout = () => {
+const Layout = (props) => {
   const mobile = useMediaQuery("(max-width:768px)");
   const [show, setShow] = useState(false);
+  console.log(props);
 
   return (
     <>
       <SideBar show={show} setShow={setShow} menus={menuItems} />
       {!mobile && <TopHeader />}
-      <Navigation setShow={setShow} menus={menuItems} />
+      <Navigation setShow={setShow} menus={menuItems} {...props} />
       <Body />
       <DownloadApp />
       <QuickLinks />

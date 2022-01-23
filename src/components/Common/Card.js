@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
 
 import colors from "../../config/colors";
 
@@ -109,6 +110,7 @@ const useStyles = makeStyles({
 
 const Card = ({ course }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
     <div className={classes.container}>
@@ -135,7 +137,9 @@ const Card = ({ course }) => {
         </Grid>
       </Grid>
 
-      <p className={classes.title}>{course.title}</p>
+      <p onClick={() => navigate("/coursedetail")} className={classes.title}>
+        {course.title}
+      </p>
 
       <Grid container justifyContent="space-between">
         <Grid item>

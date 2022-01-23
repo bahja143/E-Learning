@@ -1,8 +1,12 @@
 import Layout from "./views/Layout";
-import WatchCourse from "./views/Course/WatchCourse";
+import { BrowserRouter } from "react-router-dom";
 
-function App() {
-  return <Layout />;
+function App(props) {
+  return (
+    <BrowserRouter>
+      <Layout {...props} />
+    </BrowserRouter>
+  );
 }
 
 export default App;

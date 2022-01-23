@@ -13,6 +13,8 @@ const useStyles = makeStyles({
     fontFamily: "Roboto",
     fontSize: 19,
     transition: "color 0.2s",
+    color: "#000",
+    textDecoration: "none",
     "&:hover": {
       color: colors.primary,
       cursor: "pointer",
@@ -30,7 +32,9 @@ const NavItem = ({ item }) => {
       onMouseLeave={() => setShow(false)}
       className={classes.container}
     >
-      <span className={classes.navItem}>{item.name}</span>
+      <a href={item.url} className={classes.navItem}>
+        {item.name}
+      </a>
       {show && <SubNavItems items={item.children} />}
     </div>
   );

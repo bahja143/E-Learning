@@ -18,7 +18,8 @@ const useStyles = makeStyles({
   },
   body: {
     backgroundColor: colors.white,
-    width: "39%",
+    width: "75%",
+    paddingTop: 75,
     height: "100%",
     overflow: "hidden",
     animation: "$fadeIn .4s ease-in-out",
@@ -34,6 +35,8 @@ const useStyles = makeStyles({
     fontSize: 25,
     margin: 15,
     color: "#444",
+    position: "relative",
+    top: 15,
   },
   icon: {
     color: colors.primary,
@@ -81,6 +84,7 @@ const useStyles = makeStyles({
     margin: "4px 0",
     paddingLeft: 20,
     color: colors.black,
+    textDecoration: "none",
   },
   contactNav: {
     borderBottom: "1px solid #eee",
@@ -184,7 +188,9 @@ const SideBar = ({ show, setShow, menus }) => {
                 className={classes.navConta}
                 onClick={() => handleOpenSubNav(r.id)}
               >
-                <p className={classes.navItem}>{r.name}</p>
+                <a href={r.url} className={classes.navItem}>
+                  {r.name}
+                </a>
                 {r.children &&
                   (open.show && open.id === r.id ? (
                     <i className={`fas fa-minus ${classes.openNavIcon}`} />

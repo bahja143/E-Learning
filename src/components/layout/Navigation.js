@@ -70,6 +70,8 @@ const useStyles = makeStyles({
     fontWeight: "500",
     fontFamily: "Roboto",
     fontSize: 18,
+    color: "#000",
+    textDecoration: "none",
     backgroundColor: colors.white,
     transition: "color .3s, background-color .3s",
     "&:hover": {
@@ -85,6 +87,8 @@ const useStyles = makeStyles({
     fontFamily: "Roboto",
     fontSize: 19,
     transition: "color 0.2s",
+    color: "#000",
+    textDecoration: "none",
     "&:hover": {
       color: colors.primary,
       cursor: "pointer",
@@ -96,7 +100,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Navigation = ({ setShow, menus }) => {
+const Navigation = ({ setShow, menus, ...prop }) => {
   const classes = useStyles();
   const [scrollPosition, setScrollPosition] = useState(0);
   const mobile = useMediaQuery("(max-width:768px)");
@@ -115,71 +119,78 @@ const Navigation = ({ setShow, menus }) => {
   }, []);
 
   return (
-    <div
-      className={classes.container}
-      onScroll={(e) => console.log("scrolling!", e.target.scrollTop)}
-    >
-      <Container>
-        <Grid
-          container
-          justifyContent={
-            scrollPosition >= 120
-              ? mobile
-                ? "space-between"
-                : "center"
-              : "space-between"
-          }
-          alignItems="center"
-          className={
-            scrollPosition >= 120 ? classes.headerScroll : classes.header
-          }
-          spacing={scrollPosition >= 120 ? (mobile ? 8 : 10) : 0}
-        >
-          <Grid item>
-            <Grid container>
-              <Grid item>
-                <img className={classes.img} src={Logo} alt="" />
-              </Grid>
-              <Grid item>
-                <span className={classes.name}>
-                  <span className={classes.brand}>Iqra</span> College
-                </span>
-              </Grid>
-            </Grid>
-          </Grid>
-          {!mobile && (
+    <>
+      <div
+        className={classes.container}
+        onScroll={(e) => console.log("scrolling!", e.target.scrollTop)}
+      >
+        <Container>
+          <Grid
+            container
+            justifyContent={
+              scrollPosition >= 120
+                ? mobile
+                  ? "space-between"
+                  : "center"
+                : "space-between"
+            }
+            alignItems="center"
+            className={
+              scrollPosition >= 120 ? classes.headerScroll : classes.header
+            }
+            spacing={scrollPosition >= 120 ? (mobile ? 8 : 10) : 0}
+          >
             <Grid item>
-              <Grid container spacing={4}>
-                {menus.map((r) => (
-                  <Grid item key={r.id}>
-                    <NavItem item={r} key={r.id} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Grid>
-          )}
-          <Grid item>
-            {mobile ? (
-              <i
-                onClick={() => setShow(true)}
-                className={`fas fa-bars ${classes.menu}`}
-              />
-            ) : (
-              <Grid container spacing={2}>
+              <Grid container>
                 <Grid item>
-                  <span className={`${classes.navItem} ${classes.signIn}`}>
-                    Sign In
-                  </span>
+                  <img className={classes.img} src={Logo} alt="" />
                 </Grid>
                 <Grid item>
-                  <span className={classes.signUp}>Sign Up </span>
+                  <span className={classes.name}>
+                    <span className={classes.brand}>Iqra</span> College
+                  </span>
+                </Grid>
+              </Grid>
+            </Grid>
+            {!mobile && (
+              <Grid item>
+                <Grid container spacing={4}>
+                  {menus.map((r) => (
+                    <Grid item key={r.id}>
+                      <NavItem item={r} key={r.id} />
+                    </Grid>
+                  ))}
                 </Grid>
               </Grid>
             )}
+            <Grid item>
+              {mobile ? (
+                <i
+                  onClick={() => setShow(true)}
+                  className={`fas fa-bars ${classes.menu}`}
+                />
+              ) : (
+                <Grid container spacing={2}>
+                  <Grid item>
+                    <a
+                      href="/login"
+                      className={`${classes.navItem} ${classes.signIn}`}
+                    >
+                      Sign In
+                    </a>
+                  </Grid>
+                  <Grid item>
+                    <a href="/register" className={classes.signUp}>
+                      Sign Up{" "}
+                    </a>
+                  </Grid>
+                </Grid>
+              )}
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </div>
+        </Container>
+      </div>
+    </>
   );
 };
 
